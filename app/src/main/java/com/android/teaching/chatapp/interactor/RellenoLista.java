@@ -16,12 +16,13 @@ public class RellenoLista extends BaseAdapter {
     private Context contexto;
 
 
-    public RellenoLista(Context contexto) {
+    public RellenoLista(Activity contexto) {
         this.contexto=contexto;
         this.mensajes=new FireBaseChatInteractor();
-        while(mensajes.listo()==true){
-            
-        }
+    }
+
+    public FireBaseChatInteractor getMensajes() {
+        return mensajes;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class RellenoLista extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.lista_mensajes_estilo, parent, true);
+        View rowView = inflater.inflate(R.layout.lista_mensajes_estilo, parent, false);
         TextView usuario=rowView.findViewById(R.id.usuario_lista);
         usuario.setText(mensajes.getContenedorMensajes().get(position).getUsername());
         Log.d("Lista Relleno",mensajes.getContenedorMensajes().get(position).getText());

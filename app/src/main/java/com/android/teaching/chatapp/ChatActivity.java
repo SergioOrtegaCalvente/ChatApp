@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,11 +20,13 @@ import android.widget.Toast;
 
 import com.android.teaching.chatapp.interactor.FireBaseChatInteractor;
 import com.android.teaching.chatapp.interactor.RellenoLista;
+import com.android.teaching.chatapp.interfaces.MensajeInteractorCallback;
 
 public class ChatActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RellenoLista lista;
     private ListView lista_rellenar;
+    private FireBaseChatInteractor a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,13 @@ public class ChatActivity extends AppCompatActivity {
         toolbar.setTitle(R.string.app_name);
         lista_rellenar=findViewById(R.id.lista_mensajes);
         lista= new RellenoLista(this);
-        lista_rellenar.setAdapter(lista);
+        lista.getMensajes().getMensajes(new MensajeInteractorCallback() {
+            @Override
+            public void mensajesListo() {
+                lista_rellenar.setAdapter(lista);
+            }
+        });
+
 
 
 

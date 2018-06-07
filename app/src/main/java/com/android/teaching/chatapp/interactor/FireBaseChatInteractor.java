@@ -2,6 +2,7 @@ package com.android.teaching.chatapp.interactor;
 
 import android.util.Log;
 
+import com.android.teaching.chatapp.interfaces.MensajeInteractorCallback;
 import com.android.teaching.chatapp.model.Users;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,10 +19,7 @@ public class FireBaseChatInteractor {
     public FireBaseChatInteractor() {
         this.contenedorMensajes=new ArrayList<>();
     }
-    public boolean listo(){
-        return getMensajes();
-    }
-    private boolean getMensajes(){
+    public void getMensajes(final MensajeInteractorCallback llamada){
         FirebaseDatabase bd= FirebaseDatabase.getInstance();
         DatabaseReference referencia = bd.getReference("messages");
         referencia.addValueEventListener(new ValueEventListener() {
@@ -31,6 +29,7 @@ public class FireBaseChatInteractor {
                     Users usuario= user.getValue(Users.class);
                     contenedorMensajes.add(usuario);
                 }
+                llamada.mensajesListo();
             }
 
             @Override
@@ -38,7 +37,6 @@ public class FireBaseChatInteractor {
 
             }
         });
-        return  true;
     }
 
     public ArrayList<Users> getContenedorMensajes() {
