@@ -19,6 +19,8 @@ public class FireBaseChatInteractor {
     public FireBaseChatInteractor() {
         this.contenedorMensajes=new ArrayList<>();
     }
+
+
     public void getMensajes(final MensajeInteractorCallback llamada){
         FirebaseDatabase bd= FirebaseDatabase.getInstance();
         DatabaseReference referencia = bd.getReference("messages");
@@ -28,6 +30,7 @@ public class FireBaseChatInteractor {
                 for(DataSnapshot user: dataSnapshot.getChildren()){
                     Users usuario= user.getValue(Users.class);
                     contenedorMensajes.add(usuario);
+                    Log.d("USUARIO",usuario.getText());
                 }
                 llamada.mensajesListo();
             }

@@ -1,9 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewMessageActivity">
-
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#202090">>
+    </android.support.v7.widget.Toolbar>
+    <TextView
+        android:id="@+id/newmessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar2"
+        android:text="Add new Message"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_margin="5dp" />
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newmessage"
+        android:hint="Username"
+        android:layout_margin="5dp"/>
+    <EditText
+        android:id="@+id/mensaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Message"
+        android:layout_margin="5dp"
+        android:layout_below="@id/username"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/boton"
+        android:text="Enviar"
+        android:layout_margin="5dp"
+        android:layout_alignParentBottom="true"
+        android:onClick="enviar"/>
+</RelativeLayout>

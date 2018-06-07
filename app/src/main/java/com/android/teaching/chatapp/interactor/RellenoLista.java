@@ -27,7 +27,7 @@ public class RellenoLista extends BaseAdapter {
 
     @Override
     public int getCount() {
-        Log.d("Cantiad", String.valueOf(mensajes.getContenedorMensajes().size()));
+            Log.d("Entra en crear ",String.valueOf(this.mensajes.getContenedorMensajes().size()));
         return this.mensajes.getContenedorMensajes().size();
     }
 
@@ -47,7 +47,6 @@ public class RellenoLista extends BaseAdapter {
         View rowView = inflater.inflate(R.layout.lista_mensajes_estilo, parent, false);
         TextView usuario=rowView.findViewById(R.id.usuario_lista);
         usuario.setText(mensajes.getContenedorMensajes().get(position).getUsername());
-        Log.d("Lista Relleno",mensajes.getContenedorMensajes().get(position).getText());
         TextView mensaje=rowView.findViewById(R.id.mensajes_lista);
         mensaje.setText(mensajes.getContenedorMensajes().get(position).getText());
         return rowView;
